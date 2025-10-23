@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pro Data Visualizer — Dashboard</title>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <!-- D3 -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-mQ7M0Ew..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand">
+      <h1>DataVisual Pro</h1>
+      <span class="tag">Turnkey analytics — rebrand & sell</span>
+    </div>
+    <div class="header-controls">
+      <div class="search">
+        <input id="dataset-search" placeholder="Search datasets..." />
+        <button id="refresh-btn" title="Refresh data"><i class="fa fa-sync"></i></button>
+      </div>
+      <div class="actions">
+        <button id="upload-csv-btn" title="Upload CSV">Upload CSV</button>
+        <button id="export-json-btn" title="Export dataset">Export</button>
+        <button id="theme-toggle">🌗</button>
+        <button id="admin-login-btn">Admin</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <aside class="sidebar">
+      <div class="panel">
+        <h3>Datasets</h3>
+        <ul id="datasets-list" class="datasets-list"></ul>
+        <div class="panel-actions">
+          <button id="new-random-ds">Generate Random</button>
+          <button id="clear-local">Clear Local</button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Filters</h3>
+        <label>From <input id="filter-from" type="date" /></label>
+        <label>To <input id="filter-to" type="date" /></label>
+        <label>Series: <select id="filter-series"><option value="">All</option></select></label>
+        <button id="apply-filters">Apply</button>
+        <button id="reset-filters">Reset</button>
+      </div>
+
+      <div class="panel" id="snapshots-panel">
+        <h3>Snapshots</h3>
+        <ul id="snapshots-list"></ul>
+        <button id="save-snapshot">Save Snapshot</button>
+      </div>
+    </aside>
+
+    <section class="dashboard">
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-header">
+            <h4 id="chart-title">Sales — Chart</h4>
+            <div class="card-controls">
+              <select id="chart-type-select">
+                <option value="line">Line</option>
+                <option value="bar">Bar</option>
+                <option value="pie">Pie</option>
+                <option value="scatter">Scatter</option>
+                <option value="radar">Radar</option>
+              </select>
+              <button id="download-chart">Download</button>
+            </div>
+          </div>
+          <div class="card-body">
+            <canvas id="mainChart"></canvas>
+          </div>
+        </div>
+
+        <div class="card small">
+          <h4>Category Distribution</h4>
+          <div id="d3-donut"></div>
+        </div>
+
+        <div class="card">
+          <h4>Correlation (D3 scatter)</h4>
+          <div id="d3-scatter" style="height:300px"></div>
+        </div>
+
+        <div class="card">
+          <h4>Data Table</h4>
+          <div class="table-wrap">
+            <table id="data-table">
+              <thead></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <span>© <span id="year"></span> DataVisual Pro — Rebrand & sell</span>
+  </footer>
+
+  <!-- Hidden file input for uploading CSV -->
+  <input id="csv-file-input" type="file" accept=".csv,application/vnd.ms-excel,text/csv" style="display:none" />
+
+  <script src="script.js"></script>
+</body>
+</html>
