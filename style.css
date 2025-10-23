@@ -1,0 +1,90 @@
+:root{
+  --bg: #f6f8fb;
+  --card: #ffffff;
+  --muted: #6b7280;
+  --accent: #2563eb;
+  --accent-2: #14b8a6;
+  --radius: 10px;
+  --shadow: 0 6px 18px rgba(16,24,40,0.06);
+  --glass: rgba(255,255,255,0.6);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: Inter, "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial;
+  background: linear-gradient(180deg,#f8fafc 0%, #eef2ff 100%);
+  color:#0f172a;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+.app-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 28px;
+  background:linear-gradient(90deg, var(--accent), #7c3aed);
+  color:white;
+}
+
+.app-header .brand h1{margin:0;font-size:1.25rem}
+.app-header .brand .tag{font-size:0.8rem;opacity:0.9}
+
+.header-controls{display:flex;align-items:center;gap:14px}
+.search{display:flex;align-items:center;gap:6px}
+.search input{
+  padding:8px 10px;border-radius:8px;border:none;min-width:220px;
+  outline:none;font-size:0.95rem;
+}
+.header-controls .actions button{
+  margin-left:6px;padding:8px 10px;border-radius:8px;border:none;background:rgba(255,255,255,0.12);color:white;cursor:pointer;
+}
+.header-controls .actions button:hover{transform:translateY(-2px)}
+.container{display:flex;gap:20px;padding:20px 24px}
+
+.sidebar{
+  width:320px;
+  display:flex;flex-direction:column;gap:18px;
+}
+.panel{
+  background:var(--card);padding:14px;border-radius:var(--radius);box-shadow:var(--shadow);
+}
+.panel h3{margin:0 0 10px 0}
+.datasets-list{list-style:none;padding:0;margin:0;max-height:300px;overflow:auto}
+.datasets-list li{
+  padding:10px;border-radius:8px;margin-bottom:8px;cursor:pointer;background:#f3f6fb;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.datasets-list li.active{background:linear-gradient(90deg,#e6f2ff,#f8fafc);box-shadow:inset 0 0 0 1px rgba(37,99,235,0.06)}
+.panel-actions{display:flex;justify-content:space-between;margin-top:10px}
+.panel input, .panel select{width:100%;padding:8px;border-radius:8px;border:1px solid #e6eef8;background:white;margin-top:6px}
+
+.dashboard{flex:1}
+.cards-grid{display:grid;grid-template-columns: 1fr 360px;gap:20px}
+.card{background:var(--card);padding:14px;border-radius:12px;box-shadow:var(--shadow)}
+.card.small{height:300px}
+.card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.card-controls{display:flex;gap:8px;align-items:center}
+.card-controls select{padding:6px;border-radius:8px}
+.card-body{min-height:260px;display:flex;align-items:center;justify-content:center}
+
+.table-wrap{max-height:300px;overflow:auto}
+table{width:100%;border-collapse:collapse}
+table thead th{background:#f3f6fb;padding:8px;text-align:left;font-weight:600}
+table tbody td{padding:8px;border-top:1px solid #f1f5f9}
+
+.app-footer{padding:12px 24px;text-align:center;color:var(--muted);background:transparent;margin-top:10px}
+
+/* Dark mode */
+body.dark{
+  --bg: #0b1220;
+  --card: #0f1724;
+  --muted: #9aa4b2;
+  --accent: #60a5fa;
+  background: linear-gradient(180deg,#071021 0%, #071726 100%);
+  color: #e6eef8;
+}
+body.dark .search input{background:#0b1220;color:#e6eef8;border:1px solid rgba(255,255,255,0.04)}
+body.dark .panel{background:#081226}
